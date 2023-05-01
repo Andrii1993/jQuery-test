@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Згенерувати користувача</title>
+    <link rel="shortcut icon" href="./images/favicon-16x16.png" type="image/x-icon">
+    <link rel="icon" href="./images/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/reset.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./css//styles.css">
+</head>
+
+<body>
+    <!-- згенерувати користувача -->
+    <button
+        id="generate-user-btn"
+        type="button"
+        class="btn btn-primary mb-3"
+      >
+        Згенерувати користувача
+      </button>
+      <!-- створити користувача -->
+      <button id="add-user-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-user-modal">
+        Створити користувача
+    </button>
+      <table id="user-table" class="table table-striped">
+        <h2>Останні користувачі</h2>
+        <thead>
+          <tr>
+            <th>Аватар</th>
+            <th>Повне ім'я</th>
+            <th>Email</th>
+            <th>Телефон</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="generate-user-modal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Згенерувати користувача</h2>
+            <!-- <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="gender-select">Стать:</label>
+              <select id="gender-select" class="form-control">
+                <option value="">Будь-яка</option>
+                <option value="male">Чоловік</option>
+                <option value="female">Жінка</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="generate-user"
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+            >
+              Згенерувати
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Скасувати
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="details-modal" class="modal" >
+      <div class="modal-dialog" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Інформація про користувача</h2>
+            <!-- <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- створення користувача -->
+    <!-- Модальне вікно для створення користувача -->
+    <div class="modal fade" id="create-user-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h2 class="modal-title" id="myModalLabel">Створення користувача</h2>
+            </div>
+            <div class="modal-body">
+            <form id="create-user-form">
+                <div class="form-group">
+                <label for="avatar">Аватар</label>
+                <input type="file" class="form-control-file" id="avatar">
+                </div>
+                <div class="form-group">
+                <label for="name">Ім'я та прізвище</label>
+                <input type="text" class="form-control" id="name" placeholder="Ім'я та прізвище">
+                </div>
+                <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                <label for="phone">Номер телефону</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Номер телефону">
+                </div>
+                <div class="form-group">
+                <label for="gender">Стать</label>
+                <select class="form-control" id="gender">
+                    <option value="">Оберіть стать</option>
+                    <option value="male">Чоловік</option>
+                    <option value="female">Жінка</option>
+                    <option value="other">Інше</option>
+                </select>
+                </div>
+                <div class="form-group">
+                <label for="address">Адреса проживання</label>
+                <input type="text" class="form-control" id="address" placeholder="Адреса проживання">
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+            <button type="button" class="btn btn-primary" id="add-user-form">Створити користувача</button>
+            </div>
+        </div>
+        </div>
+    </div>
+  
+    
+        <!-- таблиця із всіма користувачами + модальне вікно -->
+        <div class="container">
+            <h1>Всі користувачі</h1>
+            <table id="table" class="table">
+                <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="5" class="text-center"><img src="./images/spinner.gif"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Модальне вікно з детальними даними -->
+        <div class="modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Детальні дані користувача</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img id="details-avatar" class="img-responsive" alt="Avatar">
+                            </div>
+                            <div class="col-md-9">
+                                <p>Ім'я та прізвище: <span id="details-fullname"></span></p>
+                                <p>Email: <span id="details-email"></span></p>
+                                <p>Телефон: <span id="details-phone"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- таблиця із всіма користувачами + модальне вікно -->
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
